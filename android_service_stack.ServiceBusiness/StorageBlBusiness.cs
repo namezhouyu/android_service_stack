@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace android_service_stack.ServiceBusiness
-{//入库单业务
+{//主单据列表业务
     public class StorageBlBusiness : BaseBusiness
     {
         public StoragBlResponse getStorageInBls(String companyId)
@@ -26,7 +26,7 @@ namespace android_service_stack.ServiceBusiness
             //}
             //入库单列表
             sql = String.Format("select * from TStorageBL where BLTypeID='11' and Status> 1 and CompID='{0}'", companyId);
-            return getResponse(sql);
+            return getStoragBlResponse(sql);
 
         }
 		public StoragBlResponse getStorageOutBls(String companyId)
@@ -34,13 +34,23 @@ namespace android_service_stack.ServiceBusiness
 			String sql = "";
 			//出库单列表
 			sql = String.Format("select * from TStorageBL where BLTypeID='12' and Status> 1 and CompID='{0}'", companyId);
-			return getResponse(sql);
+            return getStoragBlResponse(sql);
 
 		}
         //计划盘点列表
-        public StorageCheckBlResponse getStorageCheckBls(String companyId, int staffId)
+        public StorageCheckBlResponse getStorageCheckPlanBls(String companyId, int staffId)
         {
             String sql = String.Format("Select  BLNo,BLID,  t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status=2 and StaffID={1}", companyId, staffId);
+            return getStorageCheckBlResponse(sql);
+        }
+        //盘点历史列表
+        public StorageCheckBlResponse getStorageCheckHistoryBls(String companyId, int staffId)
+        {
+            String sql = String.Format("Select  BLNo,BLID,  t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status>2 and StaffID={1}", companyId, staffId);
+            return getStorageCheckBlResponse(sql);
+        }
+        public StorageCheckBlResponse getStorageCheckBlResponse(String sql)
+        {
             StorageCheckBlResponse response = new StorageCheckBlResponse();
             DbCommand cmd = getDbHelper().GetSqlStringCommond(sql);
             DataTable dt = getDbHelper().ExecuteDataTable(cmd);
@@ -59,7 +69,11 @@ namespace android_service_stack.ServiceBusiness
                         model.blId = dr["BLID"].ToString();
                         model.blNo = dr["BLNo"].ToString();
                         model.staffName = dr["staffName"].ToString();
-                        model.tallyDate = Convert.ToDateTime(dr["TallyDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                        if (dr["TallyDate"].ToString() != string.Empty)
+                        {
+                            model.tallyDate = Convert.ToDateTime(dr["TallyDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                        }
+
                         models.Add(model);
                     }
                     response.code = 200;
@@ -73,7 +87,7 @@ namespace android_service_stack.ServiceBusiness
 
             return response;
         }
-        public StoragBlResponse getResponse(String sql)
+        public StoragBlResponse getStoragBlResponse(String sql)
         {
             StoragBlResponse response = new StoragBlResponse();
             DbCommand cmd = getDbHelper().GetSqlStringCommond(sql);
@@ -97,9 +111,11 @@ namespace android_service_stack.ServiceBusiness
                         model.voy = dr["Voy"].ToString();
                         model.corpId = dr["CorpId"].ToString();
                         model.carNo = dr["CarNo"].ToString();
-                        model.inDate = Convert.ToDateTime(dr["InDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
-
-                        storagePlan.preTtlQty += Convert.ToInt32(dr["PreTtlQty"]);
+                        if (dr["InDate"].ToString() != string.Empty)
+                        {
+                            model.inDate = Convert.ToDateTime(dr["InDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                        }
+                        //storagePlan.preTtlQty += Convert.ToInt32(dr["PreTtlQty"]);
                         models.Add(model);
                     }
                     storagePlan.plans = models;

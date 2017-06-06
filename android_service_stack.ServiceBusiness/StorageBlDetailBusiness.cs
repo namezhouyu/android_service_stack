@@ -16,19 +16,19 @@ namespace android_service_stack.ServiceBusiness
         public StorageBlDetailResponse getStoregeInBlDetail(String userCompanyId, String cropId)
         {
             String sql = String.Format("select * from TStorageBLItem where  CompID='{0}' and BLTypeID=11 and Status= 1 and CorpID={1}", userCompanyId, cropId);
-            return getResponse(sql); ;
+            return getResponse(sql); 
         }
         //出库物流运单列表
         public StorageBlDetailResponse getStoregeOutBlDetail(String userCompanyId, String cropId)
         {
             String sql = String.Format("select * from TStorageBLItem where  CompID='{0}' and BLTypeID=12 and Status= 3 and CorpID={1}", userCompanyId, cropId);
-            return getResponse(sql); ;
+            return getResponse(sql); 
         }
         //盘点单运单列表
         public StorageBlDetailResponse getStoregeCheckDetail(String userCompanyId, int blId)
         {
             String sql = String.Format("select * from TStorageBLItem where  CompID='{0}'and BLID={1} and Status= 5", userCompanyId, blId);
-            return getResponse(sql); ;
+            return getResponse(sql); 
         }
         public StorageBlDetailResponse getResponse(String sql)
         {

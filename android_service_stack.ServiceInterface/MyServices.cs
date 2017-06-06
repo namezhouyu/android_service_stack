@@ -44,7 +44,7 @@ namespace android_service_stack.ServiceInterface
         //获取库区列表
         public StorageAreasResponse GET(StorageArea req)
         {
-            StorageTransfrom business = new StorageTransfrom();
+            LogisticsBusiness business = new LogisticsBusiness();
             return business.getAreas(req.companyId);
         }
 
@@ -64,11 +64,21 @@ namespace android_service_stack.ServiceInterface
 
             return new StoragBlResponse();
         }
-        //盘点单列表
+        //盘点单列表 1盘点计划 2盘点历史
         public StorageCheckBlResponse GET(StorageCheckBl req)
         {
             StorageBlBusiness business = new StorageBlBusiness();
-            return business.getStorageCheckBls(req.companyId, req.staffId);
+            if (req.type == 1)
+            {
+                return business.getStorageCheckPlanBls(req.companyId, req.staffId);
+            }
+            else if (req.type == 2)
+            {
+                return business.getStorageCheckHistoryBls(req.companyId, req.staffId);
+            }
+            else {
+                return new StorageCheckBlResponse();
+            }
         }
 		//单据单详情
 		//入库1 出库2 盘点4
@@ -123,6 +133,12 @@ namespace android_service_stack.ServiceInterface
             NullResponse res = new NullResponse();
             res.message = "无logisticId";
             return res;
+        }
+        //通过货物id获取货物信息
+        public GoodsDetailResponse GET(GoodsDetail req)
+        {
+            LogisticsBusiness business = new LogisticsBusiness();
+        return business.getGoodsDetailById(req.goodsId);
         }
 
     }

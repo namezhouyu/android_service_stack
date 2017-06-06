@@ -54,7 +54,6 @@
     <Compile Include="LoginBusiness.cs" />
     <Compile Include="LogisticsBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StorageTransfrom.cs" />
     <Compile Include="StorageBusinesscs.cs" />
     <Compile Include="StorageBlDetailBusiness.cs" />
     <Compile Include="StorageBlBusiness.cs" />

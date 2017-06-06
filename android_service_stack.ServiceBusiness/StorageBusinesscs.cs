@@ -2,6 +2,7 @@
 using android_service_stack.ServiceModel.response;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -29,8 +30,17 @@ namespace android_service_stack.ServiceBusiness
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
                     {
-                        sqlStr = String.Format("Update TStorageBL set Status =3 where BLID={0} and PreTtlQty = (Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 2)", blIds[i]);
+                        sqlStr = String.Format("Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 2", blIds[i]);
                         cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                        DataTable dt = getDbHelper().ExecuteDataTable(cmd);
+                        if (hasData(dt))
+                        {
+                            int ttlQty = Convert.ToInt32(dt.Rows[0][0]);
+                            sqlStr = String.Format("Update TStorageBL set Status =3,TtlQty={1} where BLID={0} and PreTtlQty ={1}", blIds[i], ttlQty);
+                            cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                            getDbHelper().ExecuteNonQuery(cmd);
+                        }
+                        
                         logging();
                     }
                 }
@@ -57,8 +67,16 @@ namespace android_service_stack.ServiceBusiness
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd)>0)
                     {
-                        sqlStr = String.Format("Update TStorageBL set Status =3 where BLID={0} and PreTtlQty = (Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 4)", blIds[i]);
+                        sqlStr = String.Format("Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 4", blIds[i]);
                         cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                        DataTable dt = getDbHelper().ExecuteDataTable(cmd);
+                        if (hasData(dt))
+                        {
+                            int ttlQty = Convert.ToInt32 (dt.Rows[0][0]);
+                            sqlStr = String.Format("Update TStorageBL set Status =3,TtlQty={1} where BLID={0} and PreTtlQty ={1}", blIds[i], ttlQty);
+                            cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                            getDbHelper().ExecuteNonQuery(cmd);
+                        }
                         logging();
                     }
                 }
@@ -85,9 +103,17 @@ namespace android_service_stack.ServiceBusiness
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
                     {
-                        sqlStr = String.Format("Update TStorageBL set Status =3 where BLID={0} and PreTtlQty = (Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 6)", blIds[i]);
+                        sqlStr = String.Format("Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 6", blIds[i]);
                         cmd = getDbHelper().GetSqlStringCommond(sqlStr);
-                        getDbHelper().ExecuteNonQuery(cmd);
+                        DataTable dt = getDbHelper().ExecuteDataTable(cmd);
+                        if (hasData(dt))
+                        {
+                            int ttlQty = Convert.ToInt32(dt.Rows[0][0]);
+                            sqlStr = String.Format("Update TStorageBL set Status =3,TtlQty={1} where BLID={0} and PreTtlQty ={1}", blIds[i], ttlQty);
+                            cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                            getDbHelper().ExecuteNonQuery(cmd);
+                        }
+                       
                         logging(); 
                     }
                 }
@@ -109,12 +135,17 @@ namespace android_service_stack.ServiceBusiness
             {
                 for (int i = 0; i < logisticIds.Count; i++)
                 {
-                    sqlStr = String.Format("update TStorageBLItem set AreaID ={0} where CompID='{1}' and BLItemID= (select BLItemID  from TStorageBLItem  where CompID='{1}' and BLTypeID=11 and LogisticsNo={2} and Status=2)",areaId, companyId, logisticIds[i]);
-
+                    sqlStr = String.Format("SELECT top 1 BLItemId FROM V_LogisticsNo_Stock where status=2 and LogisticsNo='{0}'", logisticIds[i]);
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
-
-                    if (getDbHelper().ExecuteNonQuery(cmd) > 0)
-                    { logging(); }
+                    DataTable dt = getDbHelper().ExecuteDataTable(cmd);
+                    if (hasData(dt))
+                    {
+                        String blItemId = dt.Rows[0][0].ToString();
+                        sqlStr = String.Format("update TStorageBLItem set AreaID ={0} where CompID='{1}' and BLItemID={2}", areaId, companyId, logisticIds[i]);
+                        cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                        if (getDbHelper().ExecuteNonQuery(cmd) > 0)
+                        { logging(); }
+                    }
                 }
             }
             catch (Exception ex)

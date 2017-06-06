@@ -14,5 +14,7 @@ namespace android_service_stack.ServiceModel.message
     {
         public String companyId { get; set; }//公司id
         public int staffId { get; set; }
+
+        public int type { get; set; }
     }
 }

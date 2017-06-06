@@ -9,3 +9,8 @@ C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/andro
 /Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.csproj.CoreCompileInputs.cache
 /Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.dll
 /Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceModel\bin\Debug\android_service_stack.ServiceModel.dll
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceModel\bin\Debug\android_service_stack.ServiceModel.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceModel\obj\Debug\android_service_stack.ServiceModel.dll
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceModel\obj\Debug\android_service_stack.ServiceModel.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceModel\obj\Debug\android_service_stack.ServiceModel.csprojResolveAssemblyReference.cache

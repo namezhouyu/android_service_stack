@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="message\GoodsDetail.cs" />
     <Compile Include="message\Login.cs" />
     <Compile Include="message\LogisticsCompany.cs" />
     <Compile Include="message\StorageArea.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="response\apibase\ApiBaseResponse.cs" />
     <Compile Include="response\apibase\Null.cs" />
+    <Compile Include="response\GoodsDetailResponse.cs" />
     <Compile Include="response\LoginResponse.cs" />
     <Compile Include="response\LogisticsCompanyResponse.cs" />
     <Compile Include="response\NullResponse.cs" />
@@ -62,7 +64,6 @@
     <Compile Include="response\StorageBlDetailResponse.cs" />
     <Compile Include="response\StoragBlResponse.cs" />
     <Compile Include="response\StorageCheckBlResponse.cs" />
-    <Compile Include="StorageBl.cs" />
     <Compile Include="message\StorageBl.cs" />
   </ItemGroup>
   <ItemGroup>

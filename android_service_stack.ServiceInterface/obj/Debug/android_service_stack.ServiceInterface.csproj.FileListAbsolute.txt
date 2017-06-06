@@ -36,3 +36,12 @@ C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/andro
 /Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceInterface/obj/Debug/android_service_stack.ServiceInterface.csproj.CoreCompileInputs.cache
 /Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceInterface/obj/Debug/android_service_stack.ServiceInterface.dll
 /Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceInterface/obj/Debug/android_service_stack.ServiceInterface.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\bin\Debug\android_service_stack.ServiceInterface.dll
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\bin\Debug\android_service_stack.ServiceInterface.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\bin\Debug\android_service_stack.ServiceBusiness.dll
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\bin\Debug\android_service_stack.ServiceModel.dll
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\bin\Debug\android_service_stack.ServiceBusiness.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\bin\Debug\android_service_stack.ServiceModel.pdb
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\obj\Debug\android_service_stack.ServiceInterface.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\obj\Debug\android_service_stack.ServiceInterface.dll
+C:\Users\admin\Desktop\android_service\android_service_stack\android_service_stack.ServiceInterface\obj\Debug\android_service_stack.ServiceInterface.pdb
