@@ -25,7 +25,7 @@ namespace android_service_stack.ServiceBusiness
                         sqlStr = String.Format("update TStorageBLItem set Status='2',TallyStaffID={3},InDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i], staffId);
                     }
                     else {
-                        sqlStr = String.Format("insert into TStorageBLItem (BLTypeID,Status,BLID,CompId,LogisticsNo,CorpId,TallyStaffID,InDate) values (14,'11',NULL,'{0}','{1}','{2}','{3}',(select GETUTCDATE()))", companyId, logisticIds[i], corpId, staffId);
+                        sqlStr = String.Format("insert into TStorageBLItem (BLTypeID,Status,BLID,CompId,LogisticsNo,CorpId,TallyStaffID,InDate) values (11,'11',NULL,'{0}','{1}','{2}','{3}',(select GETUTCDATE()))", companyId, logisticIds[i], corpId, staffId);
                     }
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
