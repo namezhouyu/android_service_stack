@@ -25,28 +25,30 @@ namespace android_service_stack.ServiceBusiness
             //    sql = String.Format("select * from TStorageBL where BLTypeID='11' and (Status='3' or Status='4') and CompID='{0}'", companyId);
             //}
             //入库单列表
-            sql = String.Format("select * from TStorageBL where BLTypeID='11' and Status> 1 and CompID='{0}'", companyId);
-            return getStoragBlResponse(sql);
+           // sql = String.Format("select * from TStorageBL where BLTypeID='11' and Status> 1 and CompID='{0}'", companyId);
+            sql = String.Format("select s.BLNo, c.CorpSN , s.MBLNo, s.Vsl,s.Voy ,s.InDate,s.BLID,s.CarNo from TStorageBL s left join TCodeCorp c on (c.CorpID=s.CorpID) WHERE BLTypeID=11  and s.Status> 1 and s.CompID='{0}'", companyId);
+            return getStoragBlResponse(sql,true);
 
         }
 		public StoragBlResponse getStorageOutBls(String companyId)
 		{
 			String sql = "";
 			//出库单列表
-			sql = String.Format("select * from TStorageBL where BLTypeID='12' and Status> 1 and CompID='{0}'", companyId);
-            return getStoragBlResponse(sql);
+			//sql = String.Format("select * from TStorageBL where BLTypeID='12' and Status> 1 and CompID='{0}'", companyId);
+            sql = String.Format("select s.BLNo, c.CorpSN , s.MBLNo, s.Vsl,s.Voy ,s.OutDate,s.BLID,s.CarNo from TStorageBL s left join TCodeCorp c on (c.CorpID=s.CorpID) WHERE BLTypeID=12  and s.Status> 1 and s.CompID='{0}'", companyId);
+            return getStoragBlResponse(sql,false);
 
 		}
         //计划盘点列表
         public StorageCheckBlResponse getStorageCheckPlanBls(String companyId, int staffId)
         {
-            String sql = String.Format("Select  BLNo,BLID,  t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status=2 and StaffID={1}", companyId, staffId);
+            String sql = String.Format("Select  BLNo,BLID,s.Remark,s.AreaID,s.PreTtlQty, t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status=2 and StaffID={1}", companyId, staffId);
             return getStorageCheckBlResponse(sql);
         }
         //盘点历史列表
         public StorageCheckBlResponse getStorageCheckHistoryBls(String companyId, int staffId)
         {
-            String sql = String.Format("Select  BLNo,BLID,  t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status>2 and StaffID={1}", companyId, staffId);
+            String sql = String.Format("Select  BLNo,BLID,s.Remark,s.AreaID,s.PreTtlQty, t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status>2 and StaffID={1}", companyId, staffId);
             return getStorageCheckBlResponse(sql);
         }
         public StorageCheckBlResponse getStorageCheckBlResponse(String sql)
@@ -68,6 +70,9 @@ namespace android_service_stack.ServiceBusiness
                         StorageCheckBlResponse.StorageCheckBl.CheckModel model = new StorageCheckBlResponse.StorageCheckBl.CheckModel();
                         model.blId = dr["BLID"].ToString();
                         model.blNo = dr["BLNo"].ToString();
+                        model.areaID = dr["AreaID"].ToString();
+                        model.remark = dr["Remark"].ToString();
+                        model.preTtlQty = dr["PreTtlQty"].ToString();
                         model.staffName = dr["staffName"].ToString();
                         if (dr["TallyDate"].ToString() != string.Empty)
                         {
@@ -87,7 +92,7 @@ namespace android_service_stack.ServiceBusiness
 
             return response;
         }
-        public StoragBlResponse getStoragBlResponse(String sql)
+        public StoragBlResponse getStoragBlResponse(String sql,bool isStorageIn)
         {
             StoragBlResponse response = new StoragBlResponse();
             DbCommand cmd = getDbHelper().GetSqlStringCommond(sql);
@@ -109,11 +114,20 @@ namespace android_service_stack.ServiceBusiness
                         model.mblNo = dr["MBLNo"].ToString();
                         model.vsl = dr["Vsl"].ToString();
                         model.voy = dr["Voy"].ToString();
-                        model.corpId = dr["CorpId"].ToString();
+                        model.corpSn = dr["CorpSN"].ToString();
                         model.carNo = dr["CarNo"].ToString();
-                        if (dr["InDate"].ToString() != string.Empty)
+                        if (isStorageIn)
                         {
-                            model.inDate = Convert.ToDateTime(dr["InDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                            if (dr["InDate"].ToString() != string.Empty)
+                            {
+                                model.inDate = Convert.ToDateTime(dr["InDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                            }
+                        }
+                        else {
+                            if (dr["OutDate"].ToString() != string.Empty)
+                            {
+                                model.inDate = Convert.ToDateTime(dr["OutDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                            }
                         }
                         //storagePlan.preTtlQty += Convert.ToInt32(dr["PreTtlQty"]);
                         models.Add(model);

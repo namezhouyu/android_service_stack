@@ -15,6 +15,7 @@ using System.IO;
 using System.Text;
 using android_service_stack.ServiceInterface.model;
 using ServiceStack.Web;
+using android_service_stack.ServiceBusiness.model;
 
 
 namespace android_service_stack.ServiceInterface
@@ -112,21 +113,37 @@ namespace android_service_stack.ServiceInterface
                 {
                     DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StorageJsonModel));
                     StorageJsonModel model = (StorageJsonModel)serializer.ReadObject(ms);
+                    StorageModel storageModel = new StorageModel();
+                    StorageModel.Goods[] goodsList=new StorageModel.Goods[model.goodsList.Count()];
+                    for (int i = 0; i < model.goodsList.Count(); i++)
+                    {
+                        StorageModel.Goods goods = new StorageModel.Goods();
+                        goods.blId = model.goodsList[i].blId;
+                        goods.logisticId = model.goodsList[i].logisticId;
+                        goods.spill = model.goodsList[i].spill;
+                        goodsList[i] = goods;
+                    }
+                    storageModel.goodsList = goodsList;
+                    storageModel.staffId = model.staffId;
+                    storageModel.areaId = model.areaId;
+                    storageModel.corpId = model.corpId;
+                    storageModel.companyId = model.companyId;
+
                     if (req.type == 1)
                     {
-                        return business.storageIn(model.blIds, model.companyId, model.logisticIds, model.spills, model.corpId, model.staffId);
+                        return business.storageIn(storageModel);
                     }
                     else if (req.type == 2)
                     {
-                        return business.storageOut(model.blIds, model.companyId, model.logisticIds);
+                        return business.storageOut(storageModel);
                     }
                     else if (req.type == 3)
                     {
-                        return business.storageTransform(model.areaId, model.companyId, model.logisticIds);
+                        return business.storageTransform(storageModel);
                     }
                     else if (req.type == 4)
                     {
-                        return business.storageCheck(model.blIds, model.companyId, model.logisticIds);
+                        return business.storageCheck(storageModel);
                     }
                 }
             }

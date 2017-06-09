@@ -20,6 +20,12 @@ namespace android_service_stack.ServiceModel.response
                 public String blNo { get; set; }
                 public String staffName { get; set; }
                 public String tallyDate { get; set; }
+
+                public String remark { get; set; }
+                public String areaID { get; set; }
+                public String preTtlQty { get; set; }
+
+                public String CorpSn { get; set; }
             }
         }
     }

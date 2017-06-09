@@ -16,7 +16,7 @@ namespace android_service_stack.ServiceModel.response
             public String blId { get; set; }//主表明细表关联
             public String blNo { get; set; }//入库id
             public String mblNo { get; set; }//提运单号
-            public String corpId { get; set; }//物流企业
+            public String corpSn { get; set; }//物流企业
             public String inDate { get; set; }//入库计划日
             public String vsl { get; set; }//船名
             public String voy { get; set; }//航次

@@ -11,6 +11,7 @@
     <AssemblyName>android_service_stack.ServiceBusiness</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,7 @@
     <Compile Include="businessbase\DbHelper.cs" />
     <Compile Include="LoginBusiness.cs" />
     <Compile Include="LogisticsBusiness.cs" />
+    <Compile Include="model\StorageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StorageBusinesscs.cs" />
     <Compile Include="StorageBlDetailBusiness.cs" />
