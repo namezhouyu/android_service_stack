@@ -26,6 +26,8 @@ namespace android_service_stack.ServiceModel.response
                 public String qty { get; set; }//数量
                 public String amt { get; set; }//货值
 
+                public String corpSn { get; set; }//物流公司
+
                
             }
         }

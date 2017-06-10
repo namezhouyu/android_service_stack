@@ -16,21 +16,22 @@ namespace android_service_stack.ServiceBusiness
         public StorageBlDetailResponse getStoregeInBlDetail(String userCompanyId, String cropId)
         {
             String sql = String.Format("select * from TStorageBLItem where  CompID='{0}' and BLTypeID=11 and Status= 1 and CorpID={1}", userCompanyId, cropId);
-            return getResponse(sql); 
+            return getResponse(sql,false); 
         }
         //出库物流运单列表
         public StorageBlDetailResponse getStoregeOutBlDetail(String userCompanyId, String cropId)
         {
             String sql = String.Format("select * from TStorageBLItem where  CompID='{0}' and BLTypeID=12 and Status= 3 and CorpID={1}", userCompanyId, cropId);
-            return getResponse(sql); 
+            return getResponse(sql,false); 
         }
         //盘点单运单列表
         public StorageBlDetailResponse getStoregeCheckDetail(String userCompanyId, int blId)
         {
-            String sql = String.Format("select * from TStorageBLItem where  CompID='{0}'and BLID={1} and Status= 5", userCompanyId, blId);
-            return getResponse(sql); 
+            //String sql = String.Format("select * from TStorageBLItem where  CompID='{0}'and BLID={1} and Status= 5", userCompanyId, blId);
+            String sql = String.Format("select c.CorpSN,s.BLItemId,s.LogisticsNo,s.GoodsName,s.AreaID,s.Qty,s.Amt,s.MBLNo,s.BLNo,s.Specifications,s.TallyDate ,s.BLID from TStorageBLItem s left join TCodeCorp c on (c.CorpID=s.CorpID) where  s.CompID='{0}'and s.BLID={1} and s.Status= 5", userCompanyId, blId);
+            return getResponse(sql,true); 
         }
-        public StorageBlDetailResponse getResponse(String sql)
+        public StorageBlDetailResponse getResponse(String sql,bool storageCheck)
         {
             StorageBlDetailResponse res = new StorageBlDetailResponse();
             DbCommand cmd = getDbHelper().GetSqlStringCommond(sql);
@@ -57,11 +58,15 @@ namespace android_service_stack.ServiceBusiness
                         item.mblNo = dr["MBLNo"].ToString();
                         item.blNo = dr["BLNo"].ToString();
                         item.spec = dr["Specifications"].ToString();
-                        if (dr["InDate"].ToString() != string.Empty)
+                        if (dr["TallyDate"].ToString() != string.Empty)
                         {
                           item.inDate = Convert.ToDateTime(dr["InDate"]).ToString("yyyy.MM.dd", System.Globalization.DateTimeFormatInfo.InvariantInfo);
                         }
                         item.blId = dr["BLID"].ToString();
+                        if (storageCheck)
+                        {
+                            item.corpSn = dr["CorpSN"].ToString();
+                        }
                         items.Add(item);
                     }
                     detail.items = items;

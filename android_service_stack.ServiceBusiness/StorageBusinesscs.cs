@@ -31,18 +31,21 @@ namespace android_service_stack.ServiceBusiness
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
                     {
-                        sqlStr = String.Format("Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 2", model.goodsList[i].blId);
-                        cmd = getDbHelper().GetSqlStringCommond(sqlStr);
-                        DataTable dt = getDbHelper().ExecuteDataTable(cmd);
-                        if (hasData(dt))
+                        if (model.goodsList[i].blId != null)
                         {
-                            int ttlQty = Convert.ToInt32(dt.Rows[0][0]);
-                            sqlStr = String.Format("Update TStorageBL set Status =3,TtlQty={1} where BLID={0} and PreTtlQty ={1}", model.goodsList[i].blId, ttlQty);
+                            sqlStr = String.Format("Select COUNT(1) from TStorageBLItem where BLID= {0} and Status= 2", model.goodsList[i].blId);
                             cmd = getDbHelper().GetSqlStringCommond(sqlStr);
-                            getDbHelper().ExecuteNonQuery(cmd);
+                            DataTable dt = getDbHelper().ExecuteDataTable(cmd);
+                            if (hasData(dt))
+                            {
+                                int ttlQty = Convert.ToInt32(dt.Rows[0][0]);
+                                sqlStr = String.Format("Update TStorageBL set Status =3,TtlQty={1} where BLID={0} and PreTtlQty ={1}", model.goodsList[i].blId, ttlQty);
+                                cmd = getDbHelper().GetSqlStringCommond(sqlStr);
+                                getDbHelper().ExecuteNonQuery(cmd);
+                            }
+
+                            logging();
                         }
-                        
-                        logging();
                     }
                 }
             }
@@ -99,7 +102,7 @@ namespace android_service_stack.ServiceBusiness
             {
                 for (int i = 0; i < model.goodsList.Count(); i++)
                 {
-                    sqlStr = String.Format("update TStorageBLItem set Status='6',InDate=getDate() where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId);
+                    sqlStr = String.Format("update TStorageBLItem set Status='6',TallyDate=getDate() where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId);
 
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)

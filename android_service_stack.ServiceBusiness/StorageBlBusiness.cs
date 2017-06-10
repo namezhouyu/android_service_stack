@@ -42,13 +42,15 @@ namespace android_service_stack.ServiceBusiness
         //计划盘点列表
         public StorageCheckBlResponse getStorageCheckPlanBls(String companyId, int staffId)
         {
-            String sql = String.Format("Select  BLNo,BLID,s.Remark,s.AreaID,s.PreTtlQty, t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status=2 and StaffID={1}", companyId, staffId);
+            //String sql = String.Format("Select  BLNo,BLID,s.Remark,s.AreaID,s.PreTtlQty, t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status=2 and StaffID={1}", companyId, staffId);
+            String sql = String.Format("select s.BLID,s.BLNo , s.TallyDate ,  a.AreaCN , t1.StaffName , s.PreTtlQty , s.Remark  from TStorageBL s left join TCodeCorp c on (c.CorpID=s.CorpID)Left join Teistaff t1 on (t1.StaffId=s.OpID)Left join TCodeSTArea a on (a.AreaID=s.AreaID) where s.CompID='{0}' and s.BLTypeID= 14 and s.Status=2 and s.TallyStaffID={1} ", companyId, staffId);
             return getStorageCheckBlResponse(sql);
         }
         //盘点历史列表
         public StorageCheckBlResponse getStorageCheckHistoryBls(String companyId, int staffId)
         {
-            String sql = String.Format("Select  BLNo,BLID,s.Remark,s.AreaID,s.PreTtlQty, t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status>2 and StaffID={1}", companyId, staffId);
+            //String sql = String.Format("Select  BLNo,BLID,s.Remark,s.AreaID,s.PreTtlQty, t1.staffName, s.TallyDate from TStorageBL s Left join Teistaff t1 on (t1.StaffId=s.OpID) where s.CompID='{0}' and BLTypeID= 14 and Status>2 and StaffID={1}", companyId, staffId);
+            String sql = String.Format("select s.BLID,s.BLNo , s.TallyDate ,  a.AreaCN , t1.StaffName , s.PreTtlQty , s.Remark  from TStorageBL s left join TCodeCorp c on (c.CorpID=s.CorpID)Left join Teistaff t1 on (t1.StaffId=s.OpID)Left join TCodeSTArea a on (a.AreaID=s.AreaID) where s.CompID='{0}' and s.BLTypeID= 14 and s.Status>2 and s.TallyStaffID={1} ", companyId, staffId);
             return getStorageCheckBlResponse(sql);
         }
         public StorageCheckBlResponse getStorageCheckBlResponse(String sql)
@@ -70,7 +72,7 @@ namespace android_service_stack.ServiceBusiness
                         StorageCheckBlResponse.StorageCheckBl.CheckModel model = new StorageCheckBlResponse.StorageCheckBl.CheckModel();
                         model.blId = dr["BLID"].ToString();
                         model.blNo = dr["BLNo"].ToString();
-                        model.areaID = dr["AreaID"].ToString();
+                        model.areaID = dr["AreaCN"].ToString();
                         model.remark = dr["Remark"].ToString();
                         model.preTtlQty = dr["PreTtlQty"].ToString();
                         model.staffName = dr["staffName"].ToString();
