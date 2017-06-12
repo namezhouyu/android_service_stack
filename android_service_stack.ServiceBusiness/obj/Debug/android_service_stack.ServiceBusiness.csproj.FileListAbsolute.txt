@@ -1,0 +1,7 @@
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\bin\Debug\android_service_stack.ServiceBusiness.dll
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\bin\Debug\android_service_stack.ServiceBusiness.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\bin\Debug\android_service_stack.ServiceModel.dll
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\bin\Debug\android_service_stack.ServiceModel.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\obj\Debug\android_service_stack.ServiceBusiness.csprojResolveAssemblyReference.cache
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\obj\Debug\android_service_stack.ServiceBusiness.dll
+C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceBusiness\obj\Debug\android_service_stack.ServiceBusiness.pdb
