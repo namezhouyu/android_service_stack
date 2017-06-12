@@ -21,10 +21,10 @@ namespace android_service_stack.ServiceBusiness
                 {
                     if (!spills[i])
                     {
-                        sqlStr = String.Format("update TStorageBLItem set Status='2',TallyStaffID={3},InDate=select GETUTCDATE() where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i], staffId);
+                        sqlStr = String.Format("update TStorageBLItem set Status='2',TallyStaffID={3},InDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i], staffId);
                     }
                     else {
-                        sqlStr = String.Format("insert into TStorageBLItem (Status,BLID,CompId,LogisticsNo,CorpId,TallyStaffID,InDate) values ('11',NULL,'{0}','{1}','{2}','{3}',select GETUTCDATE())", companyId, logisticIds[i], corpId, staffId);
+                        sqlStr = String.Format("insert into TStorageBLItem (Status,BLID,CompId,LogisticsNo,CorpId,TallyStaffID,InDate) values ('11',NULL,'{0}','{1}','{2}','{3}',(select GETUTCDATE()))", companyId, logisticIds[i], corpId, staffId);
                     }
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
@@ -52,7 +52,7 @@ namespace android_service_stack.ServiceBusiness
             {
                 for (int i = 0; i < logisticIds.Count; i++)
                 {
-                    sqlStr = String.Format("update TStorageBLItem set Status='4' where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i]);
+                    sqlStr = String.Format("update TStorageBLItem set Status='4',InDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i]);
 
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd)>0)
@@ -80,7 +80,7 @@ namespace android_service_stack.ServiceBusiness
             {
                 for (int i = 0; i < logisticIds.Count; i++)
                 {
-                    sqlStr = String.Format("update TStorageBLItem set Status='6' where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i]);
+                    sqlStr = String.Format("update TStorageBLItem set Status='6',InDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", blIds[i], companyId, logisticIds[i]);
 
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
