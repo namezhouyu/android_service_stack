@@ -36,11 +36,11 @@ namespace android_service_stack
                         DataSet ds = dbHelper.ExecuteDataSet(cmd);
                         if (0 == ds.Tables[0].Rows.Count)
                         {
-                            res.EndRequest();
+                            //res.EndRequest();
                         }
                     }
                     else {
-                       res.EndRequest();
+                       //res.EndRequest();
                     }
                 }
                 
