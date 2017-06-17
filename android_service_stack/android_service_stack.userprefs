@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{4389B305-B381-4B50-B1A8-BBB5259A0524}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../android_service_stack.ServiceModel/message/StorageBlDetail.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../android_service_stack.ServiceInterface/MyServices.cs">
     <Files>
-      <File FileName="../android_service_stack.ServiceInterface/MyServices.cs" Line="68" Column="55" />
+      <File FileName="../android_service_stack.ServiceInterface/MyServices.cs" Line="95" Column="3" />
       <File FileName="../android_service_stack.ServiceModel/message/Storage.cs" Line="2" Column="1" />
-      <File FileName="../android_service_stack.ServiceModel/message/StorageBlDetail.cs" Line="11" Column="22" />
+      <File FileName="../android_service_stack.ServiceModel/message/StorageBlDetail.cs" Line="15" Column="34" />
       <File FileName="../android_service_stack.ServiceModel/StorageBl.cs" Line="1" Column="1" />
       <File FileName="../android_service_stack.ServiceModel/message/StorageArea.cs" Line="1" Column="1" />
-      <File FileName="../android_service_stack.ServiceModel/message/StorageBl.cs" Line="10" Column="32" />
+      <File FileName="../android_service_stack.ServiceModel/message/StorageBl.cs" Line="8" Column="18" />
       <File FileName="../android_service_stack.ServiceBusiness/StorageBlBusiness.cs" Line="13" Column="18" />
-      <File FileName="../android_service_stack.ServiceModel/message/StorageCheckBl.cs" Line="16" Column="41" />
+      <File FileName="../android_service_stack.ServiceModel/message/StorageCheckBl.cs" Line="13" Column="18" />
       <File FileName="../android_service_stack.ServiceModel/response/StorageCheckBlResponse.cs" Line="11" Column="18" />
       <File FileName="../android_service_stack.ServiceModel/response/StoragBlResponse.cs" Line="9" Column="18" />
     </Files>

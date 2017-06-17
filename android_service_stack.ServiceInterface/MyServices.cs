@@ -31,7 +31,6 @@ namespace android_service_stack.ServiceInterface
         public NullResponse POST(Upload req)
         {
             IHttpFile file = Request.Files[0];
-
             return new UploadBusiness().upload(file, req.blItemId, req.blId);
         }
 
@@ -49,8 +48,9 @@ namespace android_service_stack.ServiceInterface
             return business.getAreas(req.companyId);
         }
 
-        //入库单 出库单 列表
-        public StoragBlResponse GET(android_service_stack.ServiceModel.message.StorageBl req)
+		//入库单 出库单 列表
+		//入库1 出库2
+		public StoragBlResponse GET(ServiceModel.message.StorageBl req)
         {
             StorageBlBusiness business = new StorageBlBusiness();
             if (req.type == 1)
@@ -64,8 +64,15 @@ namespace android_service_stack.ServiceInterface
 
             return new StoragBlResponse();
         }
-        //入库单详情
-        public StorageBlDetailResponse GET(StorageInBlDetail req)
+        //盘点单列表
+        public StorageCheckBlResponse GET(StorageCheckBl req)
+        {
+            StorageBlBusiness business = new StorageBlBusiness();
+            return business.getStorageCheckBls(req.companyId, req.staffId);
+        }
+		//单据单详情
+		//入库1 出库2 盘点4
+		public StorageBlDetailResponse GET(StorageInBlDetail req)
         {
             StorageBlDetailBusiness business = new StorageBlDetailBusiness();
             if (req.type == 1)
@@ -83,15 +90,9 @@ namespace android_service_stack.ServiceInterface
             return new StorageBlDetailResponse();
 
         }
-
-        //盘点单列表
-        public StorageCheckBlResponse GET(StorageCheckBl req)
-        {
-            StorageBlBusiness business = new StorageBlBusiness();
-            return business.getStorageCheckBls(req.companyId, req.staffId);
-        }
-        //入库 出库 移库 盘点
-        public NullResponse POST(Storage req)
+		//执行入库 出库 移库 盘点
+		//入库1 出库2 移库3 盘点4
+		public NullResponse POST(Storage req)
         {
             StorageBusinesscs business = new StorageBusinesscs();
             if (!req.storageRequest.IsEmpty())
