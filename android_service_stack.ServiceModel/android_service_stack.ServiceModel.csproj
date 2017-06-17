@@ -48,10 +48,8 @@
     <Compile Include="message\StorageArea.cs" />
     <Compile Include="message\StorageCheck.cs" />
     <Compile Include="message\StorageCheckBl.cs" />
-    <Compile Include="message\StorageCheckBlDetail.cs" />
     <Compile Include="message\Storage.cs" />
-    <Compile Include="message\StorageOutBlDetail.cs" />
-    <Compile Include="message\StorageInBlDetail.cs" />
+    <Compile Include="message\StorageBlDetail.cs" />
     <Compile Include="message\StorageTransform.cs" />
     <Compile Include="message\Upload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -68,25 +68,27 @@ namespace android_service_stack.ServiceInterface
         public StorageBlDetailResponse GET(StorageInBlDetail req)
         {
             StorageBlDetailBusiness business = new StorageBlDetailBusiness();
-            return business.getStoregeInBlDetail(req.companyId, req.corpId);
+            if (req.type == 1)
+            {
+                return business.getStoregeInBlDetail(req.companyId, req.corpId);
+            }
+            else if (req.type == 2)
+            {
+                return business.getStoregeOutBlDetail(req.companyId, req.corpId);
+            }
+            else if (req.type == 4)
+            {
+                return business.getStoregeCheckDetail(req.companyId, req.blId);
+            }
+            return new StorageBlDetailResponse();
+
         }
-        //出库单详情
-        public StorageBlDetailResponse GET(StorageOutBlDetail req)
-        {
-            StorageBlDetailBusiness business = new StorageBlDetailBusiness();
-            return business.getStoregeOutBlDetail(req.companyId, req.corpId);
-        }
+
         //盘点单列表
         public StorageCheckBlResponse GET(StorageCheckBl req)
         {
             StorageBlBusiness business = new StorageBlBusiness();
             return business.getStorageCheckBls(req.companyId, req.staffId);
-        }
-        //盘点单详情
-        public StorageBlDetailResponse GET(StorageCheckBlDetail req)
-        {
-            StorageBlDetailBusiness business = new StorageBlDetailBusiness();
-            return business.getStoregeCheckDetail(req.companyId, req.blId);
         }
         //入库 出库 移库 盘点
         public NullResponse POST(Storage req)
