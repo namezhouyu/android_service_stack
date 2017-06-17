@@ -30,11 +30,11 @@ namespace android_service_stack.ServiceInterface
         //图片上传
         public NullResponse POST(Upload req)
         {
-           IHttpFile file= Request.Files[0];
+            IHttpFile file = Request.Files[0];
 
-           return new UploadBusiness().upload(file, req.blItemId, req.blId);
+            return new UploadBusiness().upload(file, req.blItemId, req.blId);
         }
-       
+
         //获取物流公司列表
         public LogisticsCompanyResponse GET(LogisticsCompany req)
         {
@@ -49,12 +49,21 @@ namespace android_service_stack.ServiceInterface
             return business.getAreas(req.companyId);
         }
 
-        //入库单列表
-        //public StoragBlResponse GET(StorageInBl req)
-        //{
-        //    StorageBlBusiness business = new StorageBlBusiness();
-        //    return business.getStorageInBls(req.companyId, req.plan);
-        //}
+        //入库单 出库单 列表
+        public StoragBlResponse GET(android_service_stack.ServiceModel.message.StorageBl req)
+        {
+            StorageBlBusiness business = new StorageBlBusiness();
+            if (req.type == 1)
+            {
+                return business.getStorageInBls(req.companyId);
+            }
+            else if (req.type == 2)
+            {
+                return business.getStorageOutBls(req.companyId);
+            }
+
+            return new StoragBlResponse();
+        }
         //入库单详情
         public StorageBlDetailResponse GET(StorageInBlDetail req)
         {
@@ -94,7 +103,7 @@ namespace android_service_stack.ServiceInterface
                     {
                         return business.storageIn(model.blIds, model.companyId, model.logisticIds, model.spills, model.corpId, model.staffId);
                     }
-                    else if(req.type == 2)
+                    else if (req.type == 2)
                     {
                         return business.storageOut(model.blIds, model.companyId, model.logisticIds);
                     }
@@ -108,64 +117,11 @@ namespace android_service_stack.ServiceInterface
                     }
                 }
             }
-             NullResponse res =new NullResponse();
-             res.message = "无logisticId";
-             return res;
+            NullResponse res = new NullResponse();
+            res.message = "无logisticId";
+            return res;
         }
-        //出库
-        //public NullResponse POST(StorageOut req)
-        //{
-        //    StorageBusinesscs business = new StorageBusinesscs();
-        //    if (!req.storageOutRequest.IsEmpty())
-        //    {
 
-        //        using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(req.storageOutRequest)))
-        //        {
-        //            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StorageJsonModel));
-        //            StorageJsonModel model = (StorageJsonModel)serializer.ReadObject(ms);
-        //            return business.storageOut(model.blIds, model.companyId, model.logisticIds);
-        //        }
-        //    }
-        //    NullResponse res = new NullResponse();
-        //    res.message = "无出库logisticId";
-        //    return res;
-        //}
-        //盘点
-        //public NullResponse POST(StorageCheck req)
-        //{
-        //    StorageBusinesscs business = new StorageBusinesscs();
-        //    if (!req.storageCheckRequest.IsEmpty())
-        //    {
-
-        //        using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(req.storageCheckRequest)))
-        //        {
-        //            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StorageJsonModel));
-        //            StorageJsonModel model = (StorageJsonModel)serializer.ReadObject(ms);
-        //            return business.storageCheck(model.blIds, model.companyId, model.logisticIds);
-        //        }
-        //    }
-        //    NullResponse res = new NullResponse();
-        //    res.message = "无入库logisticId";
-        //    return res;
-        //}
-        //移库
-        //public NullResponse POST(StorageTransform req)
-        //{
-        //    StorageBusinesscs business = new StorageBusinesscs();
-        //   if (!req.storageTransformRequest.IsEmpty())
-        //    {
-
-        //        using (MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(req.storageTransformRequest)))
-        //        {
-        //            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(StorageJsonModel));
-        //            StorageJsonModel model = (StorageJsonModel)serializer.ReadObject(ms);
-        //            return business.storageTransform(model.areaId,model.companyId, model.logisticIds);
-        //        }
-        //    }
-        //    NullResponse res = new NullResponse();
-        //    res.message = "无移库logisticId";
-        //    return res;
-        //}
     }
 
 }

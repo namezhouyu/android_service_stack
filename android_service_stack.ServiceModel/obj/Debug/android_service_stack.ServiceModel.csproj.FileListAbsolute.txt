@@ -1,5 +1,11 @@
-C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceModel\bin\Debug\android_service_stack.ServiceModel.dll
-C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceModel\bin\Debug\android_service_stack.ServiceModel.pdb
-C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceModel\bin\Debug\ServiceStack.Interfaces.dll
-C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceModel\obj\Debug\android_service_stack.ServiceModel.dll
-C:\Users\admin\documents\visual studio 2013\Projects\android_service_stack\android_service_stack\android_service_stack.ServiceModel\obj\Debug\android_service_stack.ServiceModel.pdb
+C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/android_service_stack/android_service_stack.ServiceModel/bin/Debug/android_service_stack.ServiceModel.dll
+C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/android_service_stack/android_service_stack.ServiceModel/bin/Debug/android_service_stack.ServiceModel.pdb
+C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/android_service_stack/android_service_stack.ServiceModel/bin/Debug/ServiceStack.Interfaces.dll
+C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/android_service_stack/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.dll
+C:/Users/admin/documents/visual studio 2013/Projects/android_service_stack/android_service_stack/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.pdb
+/Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/bin/Debug/android_service_stack.ServiceModel.dll
+/Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/bin/Debug/android_service_stack.ServiceModel.pdb
+/Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.csprojResolveAssemblyReference.cache
+/Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.csproj.CoreCompileInputs.cache
+/Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.dll
+/Users/zhouxiaodong/Projects/namezhouyu/android_service_stack.git/android_service_stack.ServiceModel/obj/Debug/android_service_stack.ServiceModel.pdb

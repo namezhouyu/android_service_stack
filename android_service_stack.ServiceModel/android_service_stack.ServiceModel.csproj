@@ -50,10 +50,8 @@
     <Compile Include="message\StorageCheckBl.cs" />
     <Compile Include="message\StorageCheckBlDetail.cs" />
     <Compile Include="message\Storage.cs" />
-    <Compile Include="message\StorageOut.cs" />
     <Compile Include="message\StorageOutBlDetail.cs" />
     <Compile Include="message\StorageInBlDetail.cs" />
-    <Compile Include="message\StorageInBl.cs" />
     <Compile Include="message\StorageTransform.cs" />
     <Compile Include="message\Upload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +64,8 @@
     <Compile Include="response\StorageBlDetailResponse.cs" />
     <Compile Include="response\StoragBlResponse.cs" />
     <Compile Include="response\StorageCheckBlResponse.cs" />
+    <Compile Include="StorageBl.cs" />
+    <Compile Include="message\StorageBl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Types\" />
