@@ -23,10 +23,10 @@ namespace android_service_stack.ServiceBusiness
                 {
                     if (!model.goodsList[i].spill)
                     {
-                        sqlStr = String.Format("update TStorageBLItem set Status='2',TallyStaffID={3},InDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId, model.staffId);
+                        sqlStr = String.Format("update TStorageBLItem set Status='2',TallyStaffID={3},InDate=getDate() where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId, model.staffId);
                     }
                     else {
-                        sqlStr = String.Format("insert into TStorageBLItem (BLTypeID,Status,BLID,CompId,LogisticsNo,CorpId,TallyStaffID,InDate) values (11,'11',NULL,'{0}','{1}','{2}','{3}',(select GETUTCDATE()))", model.companyId, model.goodsList[i].logisticId, model.corpId, model.staffId);
+                        sqlStr = String.Format("insert into TStorageBLItem (BLTypeID,Status,BLID,CompId,LogisticsNo,CorpId,TallyStaffID,InDate) values (11,'11',NULL,'{0}','{1}','{2}','{3}',getDate())", model.companyId, model.goodsList[i].logisticId, model.corpId, model.staffId);
                     }
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
@@ -63,7 +63,7 @@ namespace android_service_stack.ServiceBusiness
             {
                 for (int i = 0; i < model.goodsList.Count(); i++)
                 {
-                    sqlStr = String.Format("update TStorageBLItem set Status='4',OutDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId);
+                    sqlStr = String.Format("update TStorageBLItem set Status='4',OutDate=getDate() where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId);
 
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd)>0)
@@ -99,7 +99,7 @@ namespace android_service_stack.ServiceBusiness
             {
                 for (int i = 0; i < model.goodsList.Count(); i++)
                 {
-                    sqlStr = String.Format("update TStorageBLItem set Status='6',InDate=(select GETUTCDATE()) where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId);
+                    sqlStr = String.Format("update TStorageBLItem set Status='6',InDate=getDate() where BLID='{0}' and CompId='{1}' and LogisticsNo='{2}'", model.goodsList[i].blId, model.companyId, model.goodsList[i].logisticId);
 
                     DbCommand cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                     if (getDbHelper().ExecuteNonQuery(cmd) > 0)
