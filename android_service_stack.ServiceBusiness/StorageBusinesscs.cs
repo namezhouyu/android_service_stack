@@ -145,7 +145,8 @@ namespace android_service_stack.ServiceBusiness
                     if (hasData(dt))
                     {
                         String blItemId = dt.Rows[0][0].ToString();
-                        sqlStr = String.Format("update TStorageBLItem set AreaID ={0} where CompID='{1}' and BLItemID={2}", model.areaId, model.companyId, blItemId);
+                        //sqlStr = String.Format("update TStorageBLItem set AreaID ={0} where CompID='{1}' and BLItemID={2}", model.areaId, model.companyId, blItemId);
+                        sqlStr = String.Format("update TStorageBLItem set AreaID ={0} where CompID='{1}' and (BLItemID={2} or (BLTypeID=12 and SrcItemID={2}))", model.areaId, model.companyId, blItemId);
                         cmd = getDbHelper().GetSqlStringCommond(sqlStr);
                         if (getDbHelper().ExecuteNonQuery(cmd) > 0)
                         { logging(); }
